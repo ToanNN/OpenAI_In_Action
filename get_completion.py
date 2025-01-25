@@ -23,11 +23,12 @@ def get_completion(prompt, model="chatgpt-4o-latest",
     # Create a list of all message contents
     return [choice.message.content for choice in response.choices]
 
-def get_completion_from_messages(messages, model="chatgpt-4o-latest", temperature=0):
+def get_completion_from_messages(messages, model="chatgpt-4o-latest", temperature=0, max_tokens = 1000):
     response = client.chat.completions.create(
         model=model,
         messages=messages,
         temperature=temperature, # this is the degree of randomness of the model's output
+        max_completion_tokens= max_tokens
     )
     return [choice.message.content for choice in response.choices]
 
